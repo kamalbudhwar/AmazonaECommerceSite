@@ -6,7 +6,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:2
     },
     {
         _id:'2',
@@ -15,7 +16,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:4
     },
     {
         _id:'3',
@@ -24,7 +26,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:6
     },
     {
         _id:'4',
@@ -33,7 +36,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:6
     },
     {
         _id:'5',
@@ -42,7 +46,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:6
     },
     {
         _id:'6',
@@ -51,7 +56,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:6
     },
     {
         _id:'7',
@@ -60,7 +66,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:6
     },
     {
         _id:'8',
@@ -69,7 +76,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:6
     },{
         _id:'9',
         name:'Slim Shirt',
@@ -77,7 +85,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:6
     },{
         _id:'10',
         name:'Slim Shirt',
@@ -85,7 +94,8 @@ const data={
         price:60,
         brand:'styleWith',
         rating:4.5,
-        numReviews:10
+        numReviews:10,
+        countInStock:6
     }]
 }   
 export default data;
