@@ -1,19 +1,21 @@
 import express from 'express';
-import User from '../models/userModel';
+import User from '../models/userModel.js';
+import {getToken} from '../util.js';
 var router=express.Router();
 
-router.post('/sigin',async(req,res)=>{
+router.post('/signin',async(req,res)=>{
+    console.log("EMAIL",req.body.email);
     const signinUser=await User.findOne({
-        email:req.body.email,
-        password:req.body.password
-    });
+         email : req.body.email,
+         password : req.body.password
+    })
     if(signinUser){
         res.send({
             _id:signinUser.id,
             name:signinUser.name,
             email:signinUser.email,
             isAdmin:signinUser.isAdmin,
-            token:getToken(user)
+            token:getToken(signinUser)
         })
     }
     else{
@@ -35,4 +37,6 @@ router.get('/createadmin',async(req,res)=>{
         res.send({msg:error.message});
     }   
 });
-module.exports=router;
+// module.exports=router;
+
+export default router;
