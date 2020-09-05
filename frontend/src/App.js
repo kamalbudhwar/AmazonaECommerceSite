@@ -6,6 +6,7 @@ import CartScreen from "./screens/CartScreen";
 import {Link} from 'react-router-dom';
 import SigninScreen from './screens/SigninScreen';
 import { useSelector } from 'react-redux';
+import RegisterScreen from './screens/RegisterScreen';
 
 function App() {
   const userSignin= useSelector(state => state.userSignin);
@@ -40,6 +41,7 @@ function App() {
         <main className="main">
             <div className="content">
               <Route path="/signin" component={SigninScreen}/>
+              <Route path="/register" component={RegisterScreen}/>
               <Route path="/product/:id" exact={true} component={ProductScreen}/>
               <Route path="/cart/:id?" component={CartScreen}/>
               <Route path="/" exact={true} component={HomeScreen}/>   
