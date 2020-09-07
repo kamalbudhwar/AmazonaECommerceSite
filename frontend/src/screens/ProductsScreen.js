@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signin, saveProduct, listProducts } from "../actions/productActions";
+import { signin, saveProduct, listProducts,deleteProduct} from "../actions/productActions";
 
 function ProductsScreen(props) {
   const [modelVisible, setModelVisible] = useState(false);
@@ -18,6 +18,8 @@ function ProductsScreen(props) {
   const [countInStock, setCountInStock] = useState("");
   const productSave = useSelector((state) => state.productSave);
   const { loading: loadindSave, success: successSave, error: errorSave } = productSave;
+  const productDelete = useSelector((state) => state.productDelete);
+  const { loading: loadindDelete, success: successDelete, error: errorDelete } = productDelete;
   const productList = useSelector((state) => state.productList);
   const { loading, products, error } = productList;
   const userSignIn = useSelector((state) => state.userSignin);
@@ -26,7 +28,7 @@ function ProductsScreen(props) {
   useEffect(() => {
     if (successSave) setModelVisible(false);
     dispatch(listProducts);
-  }, [successSave]);
+  }, [successSave,successDelete]);
 
   const openModal = (product) => {
     setModelVisible(true);
@@ -41,6 +43,8 @@ function ProductsScreen(props) {
     setCountInStock(product.countInStock);
   };
 
+  const deleteHandler = (product) => {};
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveProduct({ _id: id, name, price, image, brand, category, rating, description, numReview, countInStock }));
@@ -50,7 +54,7 @@ function ProductsScreen(props) {
     <div className="content content-margined">
       <div className="product-header">
         <h3>Products</h3>
-        <button onClick={() => openModal({})}>Create Product</button>
+        <button className="button primary" onClick={() => openModal({})}>Create Product</button>
       </div>
       {modelVisible && (
         <div className="form">
@@ -117,7 +121,7 @@ function ProductsScreen(props) {
         </div>
       )}
       <div className="product-list">
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>ID</th>
@@ -130,15 +134,15 @@ function ProductsScreen(props) {
           </thead>
           <tbody>
             {products.map((product, index) => (
-              <tr key={index}>
+              <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
                 <td>
-                  <button onClick={() => openModal(product)}>Edit</button>
-                  <button onClick={() => openModal(product)}>Delete</button>
+                  <button className="button" onClick={() => openModal(product)}>Edit</button>
+                  <button className="button" onClick={() => deleteHandler(product)}>Delete</button>
                 </td>
               </tr>
             ))}

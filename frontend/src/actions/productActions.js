@@ -1,5 +1,5 @@
 import axios from "axios";
-const { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL } = require("../constants/productConstants");
+const { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_FAIL, PRODUCT_DELETE_SUCCESS } = require("../constants/productConstants");
 const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
@@ -35,4 +35,16 @@ const saveProduct = (product) => async (dispatch,getState) => {
     dispatch({type:PRODUCT_SAVE_FAIL,payload:error.message});
   }
 };
-export {listProducts, detailsProduct,saveProduct};
+
+const deleteProduct = (product) => async (dispatch,getState) => {
+  try {
+    dispatch({ type:PRODUCT_DELETE_REQUEST, payload: product });
+    const {userSignin:{userInfo}}=getState;
+    const { data } = await axios.delete("/api/products/" + product._id+{headers:{'Authorization':'Sandhu '+userInfo.token}});
+    dispatch({ type:PRODUCT_DELETE_SUCCESS, payload: data, success:true });
+  } catch (error) {
+    dispatch({ type:PRODUCT_DELETE_FAIL, payload: error.message });
+  }
+};
+
+export {listProducts, detailsProduct,saveProduct,deleteProduct};

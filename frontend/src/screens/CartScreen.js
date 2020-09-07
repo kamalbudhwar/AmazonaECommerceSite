@@ -29,10 +29,8 @@ function CartScreen(props) {
             <h3>Shopping Cart</h3>
             <div>Price</div>
           </li>
-          {cartItems.length === 0 ? (
-            <div>Cart is Empty</div>
-          ) : (
-            cartItems.map((item, index) => (
+          {cartItems.length === 0 ? 
+            (<div>Cart is Empty</div>): cartItems.map((item, index) => 
               <li key={index}>
               <div className="cart-image"><img src={item.image} alt="product" /></div>
                 <div className="cart-name">
@@ -51,8 +49,8 @@ function CartScreen(props) {
                 </div>
                 <div className="cart-price">${item.price}</div>
               </li>
-            ))
-          )}
+            )
+          }
         </ul>
       </div>
       <div className="cart-action">
