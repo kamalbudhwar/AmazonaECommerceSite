@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import ProductsScreen from './screens/ProductsScreen';
 import CartScreen from "./screens/CartScreen";
 import {Link} from 'react-router-dom';
 import SigninScreen from './screens/SigninScreen';
@@ -26,7 +27,7 @@ function App() {
                 <Link to='/'>amazona</Link>
             </div>
             <div className="header-links">
-                <Link to='//cart'>Cart</Link>
+                <Link to='/cart'>Cart</Link>
                 {userInfo?<Link to='/profile'>{userInfo.name}</Link>:<Link to='/signin'>Signin</Link>}
             </div>
         </header>
@@ -36,12 +37,14 @@ function App() {
             <ul>
                 <li><a href="index.html">Paints</a></li>
                 <li><a href="index.html">Shirts</a></li>
+                <li><Link to='/products'>Create New Product</Link></li>
             </ul>
         </aside>
         <main className="main">
             <div className="content">
               <Route path="/signin" component={SigninScreen}/>
               <Route path="/register" component={RegisterScreen}/>
+              <Route path="/products" exact={true} component={ProductsScreen}/>
               <Route path="/product/:id" exact={true} component={ProductScreen}/>
               <Route path="/cart/:id?" component={CartScreen}/>
               <Route path="/" exact={true} component={HomeScreen}/>   

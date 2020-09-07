@@ -11,15 +11,15 @@ function RegisterScreen(props) {
   const [rePassword, setRePassword] = useState("");
   const userRegister = useSelector((state) => state.userRegister);
   const { loading,error } = userRegister;
-
-//   useEffect(() => {
-//     if (userInfo) {
-//       props.history.push("/");
-//     }
-//   }, [userInfo]);
+  const {userInfo}=userRegister;
+  useEffect(() => {
+    if (userInfo) {
+      props.history.push("/");
+    }
+  }, [userInfo]);
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name,email, password));
+    dispatch(register(name,email,password));
   };
   return (
     <div className="form">
@@ -51,7 +51,7 @@ function RegisterScreen(props) {
             <input type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} autoComplete="Current Password"></input>
           </li>
           <li>
-            <label htmlFor="rePassword">Password</label>
+            <label htmlFor="rePassword">Re Enter Password</label>
             <input type="password" name="rePassword" id="rePassword" onChange={(e) => setRePassword(e.target.value)} autoComplete="Re enter your Current Password"></input>
           </li>
           <li>
