@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signin } from "../actions/userActions";
+import { signin} from "../actions/userActions";
 
 function SigninScreen(props) {
   const dispatch = useDispatch();
@@ -9,10 +9,10 @@ function SigninScreen(props) {
   const [password, setPassword] = useState("");
   const userSignIn=useSelector((state)=>state.userSignin);
   const{loading,userInfo,error}=userSignIn;
-  
+  const redirect=props.location.search?props.location.search.split("=")[1]:'/';
     useEffect(() => {
         if(userInfo){
-            props.history.push('/')
+            props.history.push(redirect);
         }
     }, [userInfo]);
   const submitHandler = (e) => {
@@ -44,7 +44,7 @@ function SigninScreen(props) {
           </li>
           <li>New to amazona??</li>
           <li>
-            <Link to="/register" className="button secondry text-center">
+            <Link to={redirect==='/'?'register':'register?redirect='+redirect} className="button secondry text-center">
               Create Your amazona account
             </Link>{" "}
           </li>

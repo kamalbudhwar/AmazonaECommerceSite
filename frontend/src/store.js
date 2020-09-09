@@ -6,7 +6,7 @@ import { userSigninReducers, userRegisterReducers } from './reducer/userReducers
 import {cartReducer} from './reducer/cartReducers.js'
 const cartItems=Cookies.getJSON('cartItems')||[];
 const userInfo=Cookies.getJSON('userInfo')||{};
-const initialState={userSignin:userInfo,cart:{cartItems}};
+const initialState={userSignin:userInfo,cart:{cartItems,shipping:{},payment:{}}};
 
 const reducer=combineReducers({
     productList:productListReducer,
